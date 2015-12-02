@@ -1,6 +1,6 @@
 Report       : main
-Date         : 12-01-2015
-Time         : 03:47:07
+Date         : 12-02-2015
+Time         : 17:24:14
 
 Compiler     : BASCOM-AVR LIBRARY V 1.11.9.8
 Processor    : M32
@@ -8,9 +8,9 @@ SRAM         : 800 hex
 EEPROM       : 400 hex
 ROMSIZE      : 8000 hex
 
-ROMIMAGE     : 17E hex  -> Will fit into ROM
-ROMIMAGE     :  382 dec
-FLASH USED   :  1  %
+ROMIMAGE     : 2B0 hex  -> Will fit into ROM
+ROMIMAGE     :  688 dec
+FLASH USED   :  2  %
 BAUD         : 9600 Baud
 XTAL         : 8000000 Hz
 BAUD error   : 0.16%
@@ -21,7 +21,7 @@ S-Stacksize  : 8 hex
 S-Stackstart : 840 hex
 Framesize    : 18 hex
 Framestart   : 827 hex
-Space left   :  1880  dec
+Space left   :  1870  dec
 
 LCD DB7      : PORTB.7
 LCD DB6      : PORTB.6
@@ -66,6 +66,8 @@ PWM1B                            Word              0048          72
 COMPARE1B                        Word              0048          72 
 PWM0                             Byte              005C          92 
 ERR                              Bit               0006          6 
+A                                Integer           00C7          199 
+B                                String            00C9          201 
 
 --------------------------------------------------------------------------------
 Constant                         Value
@@ -427,7 +429,7 @@ _ROMSIZE                         32768
 _DOSFILEWRITE                    0                                                                                                                                                                                                                                                               
 _DOSDIRWRITE                     0                                                                                                                                                                                                                                                               
 _1WEXT                           0                                                                                                                                                                                                                                                               
-_ADC_REFMODEL                    0                                                                                                                                                                                                                                                               
+_ADC_REFMODEL                    8                                                                                                                                                                                                                                                               
 _UARTS                           1                                                                                                                                                                                                                                                               
 _TIMEOUT                         0                                                                                                                                                                                                                                                               
 _HWSTACK_LOW                      2111                                                                                                                                                                                                                                                           

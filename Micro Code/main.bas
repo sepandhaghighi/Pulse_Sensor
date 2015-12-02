@@ -4,11 +4,22 @@ $baud = 9600
 Enable Interrupts
 
 Config Serialout = Buffered , Size = 100
+Config Adc = Single , Prescaler = Auto
+Start Adc
 
+Dim A As Integer
+Dim B As String * 7
 Do
 
 
-    Print "sep1024"
+    A = Getadc(0)
+    B = "sep"
+    B = B + Str(a)
+
+    Print B
+
+    
+
 
 
 

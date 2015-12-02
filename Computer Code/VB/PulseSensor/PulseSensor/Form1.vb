@@ -1,9 +1,15 @@
 ﻿Public Class Form1
     Public Shared input As String
     Public Shared array(3) As String
-    Public Shared value As Integer = 0
+    Public Shared value As Double = 0
     Public Shared x_value As Double = 0
     Public Shared counter As Integer = 0
+    Public Shared convert As Double = 70 / 500
+    Public Shared start_flag As Integer = 0
+    Public Shared prev_value As Double = 1024
+    Public Shared diff As Double = 0
+    Public Shared prev_flag As Boolean = False
+
     Public Sub combo_set(ByVal index As Integer)
         If index = 1 Then
             ComboBox1.Enabled = False
@@ -18,6 +24,11 @@
             ComboBox3.Enabled = True
             ComboBox5.Enabled = True
         End If
+    End Sub
+    Public Sub update_info(ByVal x As Double, ByVal v As Double)
+        Label2.Text = Int(v)
+        ProgressBar1.Value = v
+        Chart1.Series(0).Points.AddXY(x, v)
     End Sub
     Public Function stop_select(ByVal index As String) As IO.Ports.StopBits
         If index = "One" Then
@@ -46,6 +57,18 @@
         End If
         Return IO.Ports.Parity.None
     End Function
+    Public Sub sensor_status(ByVal index As Integer)
+        If index = 1 Then
+            Label9.Text = "Active"
+            Label9.BackColor = Color.YellowGreen
+        ElseIf index = 2 Then
+            Label9.Text = "Inactive"
+            Label9.BackColor = Color.Red
+        ElseIf index = 3 Then
+            Label9.Text = "Process"
+            Label9.BackColor = Color.Orange
+        End If
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         End
     End Sub
@@ -92,14 +115,16 @@ error_label:
         input = SerialPort1.ReadExisting
         If input.Contains("sep") Then
             array = Split(input, "sep")
-            value = value + Val(array(1))
-            counter = counter + 1
-            If counter = 10 Then
-                value = value / 10
-                counter = 0
-                ProgressBar1.Value = value
-                Chart1.Series(0).Points.AddXY(x_value, value)
+            If Val(array(1)) < 10 Then
+                start_flag = start_flag + 1
             End If
+        End If
+        If start_flag > 20 Then
+            sensor_status(3)
+            prev_flag = False
+            start_flag = 0
+            Timer2.Enabled = True
+            Timer1.Enabled = False
         End If
 
     End Sub
@@ -109,16 +134,46 @@ error_label:
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        Randomize()
-        x_value = Rnd()
-        x_value = x_value * 120
-        counter = counter + 1
-        Chart1.Series(0).Points.AddXY(counter, Int(x_value))
-        ProgressBar1.Value = Int(x_value)
-        Label2.Text = Int(x_value)
+        input = SerialPort1.ReadExisting
+        If input.Contains("sep") Then
+            array = Split(input, "sep")
+            If Val(array(1)) > 10 Then
+                value = value + Val(array(1))
+                counter = counter + 1
+
+            End If
+            If counter = 10 Then
+                value = value / 10
+                counter = 0
+                value = value * convert
+                sensor_status(1)
+                If value - prev_value > 10 And prev_flag = True Then
+                    ProgressBar1.Value = 0
+                    Label2.Text = 0
+                    prev_flag = False
+                    sensor_status(2)
+                    Timer1.Enabled = True
+                    Timer2.Enabled = False
+
+                End If
+                If value > 0 And value < 140 And prev_flag = True Then
+                    update_info(x_value, value)
+                    x_value = x_value + 1
+                End If
+                prev_value = value
+                prev_flag = True
+                value = 0
+            End If
+
+        End If
+
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
         Timer2.Enabled = True
+    End Sub
+
+    Private Sub Label9_Click(sender As Object, e As EventArgs) Handles Label9.Click
+
     End Sub
 End Class

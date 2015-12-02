@@ -9,3 +9,14 @@ C:\Users\sepand\Desktop\Pulse_sensor\Computer Code\VB\PulseSensor\PulseSensor\ob
 C:\Users\sepand\Desktop\Pulse_sensor\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.xml
 C:\Users\sepand\Desktop\Pulse_sensor\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.pdb
 C:\Users\sepand\Desktop\Pulse_sensor\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.vbprojResolveAssemblyReference.cache
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\bin\Debug\PulseSensor.exe.config
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.exe
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.xml
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.pdb
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\bin\Debug\PulseSensor.exe
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\bin\Debug\PulseSensor.pdb
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\bin\Debug\PulseSensor.xml
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.vbprojResolveAssemblyReference.cache
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.Form1.resources
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.Resources.resources
+C:\Users\sepand\Desktop\Pulse_Sensor2\Computer Code\VB\PulseSensor\PulseSensor\obj\Debug\PulseSensor.vbproj.GenerateResource.Cache
