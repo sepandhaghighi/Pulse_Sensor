@@ -23,9 +23,9 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea9 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend9 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series9 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -47,6 +47,8 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -114,17 +116,19 @@ Partial Class Form1
         '
         'Chart1
         '
-        ChartArea9.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea9)
-        Legend9.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend9)
+        Me.Chart1.BorderlineWidth = 5
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend1)
         Me.Chart1.Location = New System.Drawing.Point(54, 177)
         Me.Chart1.Name = "Chart1"
-        Series9.ChartArea = "ChartArea1"
-        Series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
-        Series9.Legend = "Legend1"
-        Series9.Name = "Pulse"
-        Me.Chart1.Series.Add(Series9)
+        Me.Chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series1.Legend = "Legend1"
+        Series1.Name = "Pulse"
+        Me.Chart1.Series.Add(Series1)
         Me.Chart1.Size = New System.Drawing.Size(462, 272)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Chart1"
@@ -137,7 +141,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Label1.Location = New System.Drawing.Point(59, 101)
+        Me.Label1.Location = New System.Drawing.Point(12, 101)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(134, 25)
         Me.Label1.TabIndex = 9
@@ -147,7 +151,7 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Label2.Location = New System.Drawing.Point(231, 101)
+        Me.Label2.Location = New System.Drawing.Point(152, 100)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(25, 25)
         Me.Label2.TabIndex = 10
@@ -227,11 +231,11 @@ Partial Class Form1
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Label8.Location = New System.Drawing.Point(326, 101)
+        Me.Label8.Location = New System.Drawing.Point(239, 102)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(78, 24)
+        Me.Label8.Size = New System.Drawing.Size(150, 24)
         Me.Label8.TabIndex = 19
-        Me.Label8.Text = "Status :"
+        Me.Label8.Text = "Sensor Status :"
         '
         'Label9
         '
@@ -244,11 +248,34 @@ Partial Class Form1
         Me.Label9.TabIndex = 20
         Me.Label9.Text = "Inactive"
         '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Label12.Location = New System.Drawing.Point(606, 247)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(137, 24)
+        Me.Label12.TabIndex = 23
+        Me.Label12.Text = "Serial Status :"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.Red
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Label13.Location = New System.Drawing.Point(788, 247)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(81, 24)
+        Me.Label13.TabIndex = 24
+        Me.Label13.Text = "Inactive"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(931, 490)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
@@ -295,5 +322,7 @@ Partial Class Form1
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents Label13 As System.Windows.Forms.Label
 
 End Class

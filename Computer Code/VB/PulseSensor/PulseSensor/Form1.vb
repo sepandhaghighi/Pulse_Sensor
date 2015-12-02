@@ -9,7 +9,31 @@
     Public Shared prev_value As Double = 1024
     Public Shared diff As Double = 0
     Public Shared prev_flag As Boolean = False
+    Public Sub serial_set(ByVal index As Integer)
+        If index = 1 Then
+            Button2.Text = "Disconnect"
+            serial_status(1)
+            combo_set(1)
+            Timer1.Enabled = True
+            Button2.BackColor = Color.Aqua
+        ElseIf index = 2 Then
+            Button2.Text = "Connect"
+            serial_status(2)
+            combo_set(2)
+            Timer1.Enabled = False
+            Button2.BackColor = Color.SkyBlue
+        End If
+    End Sub
+    Public Sub serial_status(ByVal index As Integer)
+        If index = 1 Then
+            Label13.Text = "Active"
+            Label13.BackColor = Color.YellowGreen
 
+        ElseIf index = 2 Then
+            Label13.Text = "Inactive"
+            Label13.BackColor = Color.Red
+        End If
+    End Sub
     Public Sub combo_set(ByVal index As Integer)
         If index = 1 Then
             ComboBox1.Enabled = False
@@ -91,19 +115,13 @@
             SerialPort1.StopBits=stop_select(ComboBox4.SelectedItem.ToString)
             If Not SerialPort1.IsOpen Then
                 SerialPort1.Open()
-                Button2.Text = "Disconnect"
-                combo_set(1)
-                Timer1.Enabled = True
-                Button2.BackColor = Color.Aqua
+                serial_set(1)
             Else
                 MsgBox("Port Is Open")
             End If
         Else
             SerialPort1.Close()
-            Button2.Text = "Connect"
-            combo_set(2)
-            Timer1.Enabled = False
-            Button2.BackColor = Color.SkyBlue
+            serial_set(2)
         End If
 
         Exit Sub
@@ -112,6 +130,7 @@ error_label:
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        On Error GoTo timer_error_label
         input = SerialPort1.ReadExisting
         If input.Contains("sep") Then
             array = Split(input, "sep")
@@ -126,6 +145,19 @@ error_label:
             Timer2.Enabled = True
             Timer1.Enabled = False
         End If
+        Exit Sub
+timer_error_label:
+        serial_set(2)
+        SerialPort1.Dispose()
+        Timer1.Enabled = False
+        Timer2.Enabled = False
+        MsgBox("Serial Port Disconnected")
+
+        
+
+
+
+
 
     End Sub
 
@@ -134,6 +166,7 @@ error_label:
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        On Error GoTo timer2_error_link
         input = SerialPort1.ReadExisting
         If input.Contains("sep") Then
             array = Split(input, "sep")
@@ -166,6 +199,17 @@ error_label:
             End If
 
         End If
+        Exit Sub
+timer2_error_link:
+        serial_set(2)
+        SerialPort1.Dispose()
+        Timer2.Enabled = False
+        Timer1.Enabled = False
+        MsgBox("Serial Port Disconnected")
+        
+
+
+
 
     End Sub
 
@@ -174,6 +218,10 @@ error_label:
     End Sub
 
     Private Sub Label9_Click(sender As Object, e As EventArgs) Handles Label9.Click
+
+    End Sub
+
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs)
 
     End Sub
 End Class
