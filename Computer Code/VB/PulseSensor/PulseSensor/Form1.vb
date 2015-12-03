@@ -93,16 +93,51 @@
             Label9.BackColor = Color.Orange
         End If
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        End
-    End Sub
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Function chart_type(ByVal index As Integer) As DataVisualization.Charting.SeriesChartType
+        If index = 0 Then
+            Return DataVisualization.Charting.SeriesChartType.Line
+        ElseIf index = 1 Then
+            Return DataVisualization.Charting.SeriesChartType.Spline
+        ElseIf index = 2 Then
+            Return DataVisualization.Charting.SeriesChartType.StepLine
+        ElseIf index = 3 Then
+            Return DataVisualization.Charting.SeriesChartType.FastLine
+        ElseIf index = 4 Then
+            Return DataVisualization.Charting.SeriesChartType.Area
+        End If
+        Return DataVisualization.Charting.SeriesChartType.Line
+    End Function
+    Public Function chart_pallete(ByVal index As Integer) As DataVisualization.Charting.ChartColorPalette
+        Select Case index
+            Case 0 : Return DataVisualization.Charting.ChartColorPalette.None
+            Case 1 : Return DataVisualization.Charting.ChartColorPalette.Bright
+            Case 2 : Return DataVisualization.Charting.ChartColorPalette.Grayscale
+            Case 3 : Return DataVisualization.Charting.ChartColorPalette.Excel
+            Case 4 : Return DataVisualization.Charting.ChartColorPalette.Light
+            Case 5 : Return DataVisualization.Charting.ChartColorPalette.Pastel
+            Case 6 : Return DataVisualization.Charting.ChartColorPalette.EarthTones
+            Case 7 : Return DataVisualization.Charting.ChartColorPalette.Berry
+            Case 8 : Return DataVisualization.Charting.ChartColorPalette.Chocolate
+            Case 9 : Return DataVisualization.Charting.ChartColorPalette.Fire
+            Case Else
+                Return DataVisualization.Charting.ChartColorPalette.None
+        End Select
+    End Function
+    Public Sub init()
         ComboBox1.SelectedIndex = 0
         ComboBox2.SelectedIndex = 0
         ComboBox4.SelectedIndex = 0
         ComboBox3.SelectedIndex = 0
         ComboBox5.SelectedIndex = 0
+        ListBox1.SelectedIndex = 0
+        ListBox2.SelectedIndex = 0
+    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        End
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        init()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -223,5 +258,17 @@ timer2_error_link:
 
     Private Sub Timer3_Tick(sender As Object, e As EventArgs)
 
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        Chart1.Series(0).ChartType=chart_type(ListBox1.SelectedIndex)
+    End Sub
+
+    Private Sub Label13_Click(sender As Object, e As EventArgs) Handles Label13.Click
+
+    End Sub
+
+    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
+        Chart1.Series(0).Palette = chart_pallete(ListBox2.SelectedIndex)
     End Sub
 End Class
