@@ -1,4 +1,4 @@
-$regfile = "m32def.dat"
+$regfile = "m8def.dat"
 $crystal = 8000000
 $baud = 9600
 Enable Interrupts
@@ -12,13 +12,13 @@ Dim B As String * 7
 Do
 
 
-    A = Getadc(0)
+    A = Getadc(1)
     B = "sep"
     B = B + Str(a)
 
     Print B
 
-    
+
 
 
 
