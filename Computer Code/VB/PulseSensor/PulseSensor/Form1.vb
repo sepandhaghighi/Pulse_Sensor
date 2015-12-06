@@ -11,6 +11,9 @@
     Public Shared prev_flag As Boolean = False
     Public Shared max_range As Double = 100
     Public Shared stop_thr As Double = 10
+    Public Shared bpm_index As Integer = 0
+    Public Shared bpm As Double = 0
+    Public Shared prev_value_bpm As Integer = 512
     Public Sub serial_set(ByVal index As Integer)
         If index = 1 Then
             Button2.Text = "Disconnect"
@@ -52,7 +55,7 @@
         End If
     End Sub
     Public Sub update_info(ByVal x As Double, ByVal v As Double)
-        Label2.Text = Int(v)
+        Label2.Text = v
         ProgressBar1.Value = v
         Chart1.Series(0).Points.AddXY(x, v)
     End Sub
@@ -208,32 +211,34 @@ timer_error_label:
         If input.Contains("sep") Then
             array = Split(input, "sep")
             If Val(array(1)) > 10 Then
+                'Timer3.Enabled = True
+                'diff = Math.Abs(Val(array(1)) - prev_value_bpm)
+                'prev_value_bpm = Val(array(1))
                 value = value + Val(array(1))
                 counter = counter + 1
+            End If
+        If counter = 10 Then
+            value = value / 10
+            counter = 0
+            sensor_status(1)
+            value = value * convert
+            If value - prev_value > stop_thr And prev_flag = True Then
+                ProgressBar1.Value = 0
+                Label2.Text = 0
+                prev_flag = False
+                sensor_status(2)
+                Timer1.Enabled = True
+                Timer2.Enabled = False
 
             End If
-            If counter = 10 Then
-                value = value / 10
-                counter = 0
-                sensor_status(1)
-                value = value * convert
-                If value - prev_value > stop_thr And prev_flag = True Then
-                    ProgressBar1.Value = 0
-                    Label2.Text = 0
-                    prev_flag = False
-                    sensor_status(2)
-                    Timer1.Enabled = True
-                    Timer2.Enabled = False
-
-                End If
-                If value > 0 And value < max_range And prev_flag = True Then
-                    update_info(x_value, value)
-                    x_value = x_value + 1
-                End If
-                prev_value = value
-                prev_flag = True
-                value = 0
+            If value > 0 And value < max_range And prev_flag = True Then
+                update_info(x_value, value)
+                x_value = x_value + 1
             End If
+            prev_value = value
+            prev_flag = True
+            value = 0
+        End If
 
         End If
         Exit Sub
@@ -243,7 +248,7 @@ timer2_error_link:
         Timer2.Enabled = False
         Timer1.Enabled = False
         MsgBox("Serial Port Disconnected")
-        
+
 
 
 
@@ -283,7 +288,7 @@ timer2_error_link:
         max_range = 100
         ProgressBar1.Maximum = max_range
         Label11.Text = max_range
-        stop_thr = 40
+        stop_thr = 30
 
     End Sub
 
@@ -292,6 +297,23 @@ timer2_error_link:
         max_range = 1024
         ProgressBar1.Maximum = max_range
         Label11.Text = max_range
-        stop_thr = 350
+        stop_thr = 300
+    End Sub
+
+    Private Sub Timer3_Tick_1(sender As Object, e As EventArgs) Handles Timer3.Tick
+        'bpm_index = bpm_index + 1
+        'If diff >  Then
+        'TextBox1.Text = 60000 / bpm_index
+        'bpm_index = 0
+        'Timer3.Enabled = False
+        'End If
+    End Sub
+
+    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
+        convert = 5 / 1024
+        max_range = 5
+        ProgressBar1.Maximum = max_range
+        Label11.Text = max_range
+        stop_thr = 1.7
     End Sub
 End Class
