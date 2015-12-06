@@ -4,11 +4,13 @@
     Public Shared value As Double = 0
     Public Shared x_value As Double = 0
     Public Shared counter As Integer = 0
-    Public Shared convert As Double = 70 / 500
+    Public Shared convert As Double = 100 / 1023
     Public Shared start_flag As Integer = 0
     Public Shared prev_value As Double = 1024
     Public Shared diff As Double = 0
     Public Shared prev_flag As Boolean = False
+    Public Shared max_range As Double = 100
+    Public Shared stop_thr As Double = 10
     Public Sub serial_set(ByVal index As Integer)
         If index = 1 Then
             Button2.Text = "Disconnect"
@@ -213,9 +215,9 @@ timer_error_label:
             If counter = 10 Then
                 value = value / 10
                 counter = 0
-                value = value * convert
                 sensor_status(1)
-                If value - prev_value > 10 And prev_flag = True Then
+                value = value * convert
+                If value - prev_value > stop_thr And prev_flag = True Then
                     ProgressBar1.Value = 0
                     Label2.Text = 0
                     prev_flag = False
@@ -224,7 +226,7 @@ timer_error_label:
                     Timer2.Enabled = False
 
                 End If
-                If value > 0 And value < 140 And prev_flag = True Then
+                If value > 0 And value < max_range And prev_flag = True Then
                     update_info(x_value, value)
                     x_value = x_value + 1
                 End If
@@ -270,5 +272,26 @@ timer2_error_link:
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
         Chart1.Series(0).Palette = chart_pallete(ListBox2.SelectedIndex)
+    End Sub
+
+    Private Sub Label10_Click(sender As Object, e As EventArgs) Handles Label10.Click
+
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        convert = 100 / 1024
+        max_range = 100
+        ProgressBar1.Maximum = max_range
+        Label11.Text = max_range
+        stop_thr = 40
+
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        convert = 1
+        max_range = 1024
+        ProgressBar1.Maximum = max_range
+        Label11.Text = max_range
+        stop_thr = 350
     End Sub
 End Class

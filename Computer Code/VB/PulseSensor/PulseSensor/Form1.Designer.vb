@@ -23,9 +23,9 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -51,7 +51,13 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
@@ -110,8 +116,7 @@ Partial Class Form1
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(64, 12)
-        Me.ProgressBar1.Maximum = 145
+        Me.ProgressBar1.Location = New System.Drawing.Point(22, 13)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(469, 63)
         Me.ProgressBar1.TabIndex = 6
@@ -119,19 +124,19 @@ Partial Class Form1
         'Chart1
         '
         Me.Chart1.BorderlineWidth = 5
-        ChartArea3.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea3)
-        Legend3.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend3)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend2)
         Me.Chart1.Location = New System.Drawing.Point(12, 207)
         Me.Chart1.Name = "Chart1"
         Me.Chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire
-        Series3.ChartArea = "ChartArea1"
-        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
-        Series3.Legend = "Legend1"
-        Series3.Name = "Pulse"
-        Me.Chart1.Series.Add(Series3)
-        Me.Chart1.Size = New System.Drawing.Size(504, 342)
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series2.Legend = "Legend1"
+        Series2.Name = "Pulse"
+        Me.Chart1.Series.Add(Series2)
+        Me.Chart1.Size = New System.Drawing.Size(504, 344)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Chart1"
         '
@@ -145,9 +150,9 @@ Partial Class Form1
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 101)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(134, 25)
+        Me.Label1.Size = New System.Drawing.Size(78, 25)
         Me.Label1.TabIndex = 9
-        Me.Label1.Text = "Pulse Rate:"
+        Me.Label1.Text = "Pulse:"
         '
         'Label2
         '
@@ -289,11 +294,65 @@ Partial Class Form1
         Me.ListBox2.Size = New System.Drawing.Size(49, 264)
         Me.ListBox2.TabIndex = 26
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(3, 37)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(13, 13)
+        Me.Label10.TabIndex = 27
+        Me.Label10.Text = "0"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(497, 37)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(25, 13)
+        Me.Label11.TabIndex = 28
+        Me.Label11.Text = "100"
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Location = New System.Drawing.Point(23, 20)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(52, 17)
+        Me.RadioButton1.TabIndex = 29
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "0-100"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(23, 43)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(58, 17)
+        Me.RadioButton2.TabIndex = 30
+        Me.RadioButton2.Text = "0-1023"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.RadioButton2)
+        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Location = New System.Drawing.Point(522, 207)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(128, 72)
+        Me.GroupBox1.TabIndex = 31
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Range"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(944, 561)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.ListBox2)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Label13)
@@ -319,6 +378,8 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "PulseSensor"
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -348,5 +409,10 @@ Partial Class Form1
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents ListBox2 As System.Windows.Forms.ListBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
 
 End Class
